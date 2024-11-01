@@ -21,3 +21,23 @@ export const createLocationPacket = (users) => {
 
   return serializer(locationPacket, PACKET_TYPE.LOCATION);
 };
+
+export const gameStartNotification = (gameId, timestamp) => {
+  const protoMessages = getProtoMessages();
+  const Start = protoMessages.gameNotification.Start;
+
+  const payload = { gameId, timestamp };
+  const message = Start.create(payload);
+  const startPacket = Start.encode(message).finish();
+  return serializer(startPacket, PACKET_TYPE.GAME_START);
+};
+
+export const createPingPacket = (timestamp) => {
+  const protoMessages = getProtoMessages();
+  const ping = protoMessages.common.Ping;
+
+  const payload = { timestamp };
+  const message = ping.create(payload);
+  const pingPacket = ping.encode(message).finish();
+  return serializer(pingPacket, PACKET_TYPE.PING);
+};

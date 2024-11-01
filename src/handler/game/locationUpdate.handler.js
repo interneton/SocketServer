@@ -9,8 +9,6 @@ const locationUpdateHandler = ({socket, userId, payload}) => {
             console.error("Couldn't find game session");
         }
 
-        console.log(gameSession);
-
         const user = gameSession.getUser(userId);
 
         if(!user){

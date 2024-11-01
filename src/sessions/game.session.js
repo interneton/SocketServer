@@ -8,7 +8,7 @@ export const addGameSession = (id) => {
 };
 
 export const removeGameSession = (id) => {
-    delete gameSessions[0];
+    delete gameSessions.find(session => session.id === id);
 };
 
 export const getGameSession = () => {
